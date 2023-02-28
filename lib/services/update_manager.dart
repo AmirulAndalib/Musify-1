@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:http/http.dart' as http;
 import 'package:musify/API/version.dart';
+import 'package:musify/services/external_storage.dart';
 
 late String dlUrl;
 const apiUrl =
@@ -28,7 +28,8 @@ Future<void> downloadAppUpdates() async {
   final dlUrl = await getCPUArchitecture() == 'aarch64'
       ? map['arm64url'].toString()
       : map['url'].toString();
-  final dlPath = await FilePicker.platform.getDirectoryPath();
+  final dlPath =
+      await ExternalStorageProvider().getExtStorage(dirName: 'Downloads');
   final file = File('$dlPath/Musify.apk');
   if (await file.exists()) {
     await file.delete();

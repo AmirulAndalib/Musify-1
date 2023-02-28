@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:musify/API/musify.dart';
 import 'package:musify/screens/more_page.dart';
-import 'package:musify/services/data_manager.dart';
-import 'package:musify/services/settings_manager.dart';
+import 'package:musify/services/external_storage.dart';
 import 'package:musify/utilities/flutter_toast.dart';
 import 'package:musify/widgets/download_button.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -14,9 +12,8 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 Future<void> downloadSong(BuildContext context, dynamic song) async {
   try {
-    if (!await checkDownloadDirectory(context)) {
-      return;
-    }
+    final downloadDirectory =
+        await ExternalStorageProvider().getExtStorage(dirName: 'Music');
 
     final invalidCharacters = RegExp(r'[\\/*?:"<>|]');
 
@@ -117,17 +114,4 @@ Future<void> checkNecessaryPermissions(BuildContext context) async {
       '${AppLocalizations.of(context)!.errorWhileRequestingPerms} + $e',
     );
   }
-}
-
-Future<bool> checkDownloadDirectory(BuildContext context) async {
-  downloadDirectory ??= await FilePicker.platform.getDirectoryPath();
-
-  if (downloadDirectory == null) {
-    showToast('${AppLocalizations.of(context)!.chooseDownloadDir}!');
-    return false;
-  }
-
-  addOrUpdateData('settings', 'downloadPath', downloadDirectory);
-
-  return true;
 }

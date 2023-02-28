@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musify/services/settings_manager.dart';
+import 'package:musify/services/external_storage.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 final OnAudioQuery _audioQuery = OnAudioQuery();
@@ -7,7 +7,7 @@ final OnAudioQuery _audioQuery = OnAudioQuery();
 Future<List<SongModel>> getDownloadedSongs() async {
   try {
     final downloadedSongs = await _audioQuery.querySongs(
-      path: downloadDirectory,
+      path: await ExternalStorageProvider().getExtStorage(dirName: 'Music'),
     );
     return downloadedSongs;
   } catch (e, stack) {
@@ -17,9 +17,7 @@ Future<List<SongModel>> getDownloadedSongs() async {
 }
 
 Future<List<SongModel>> getLocalMusic({searchQuery}) async {
-  final allSongs = <SongModel>[
-    for (final p in localSongsFolders) ...await _audioQuery.querySongs(path: p)
-  ];
+  final allSongs = await _audioQuery.querySongs();
   if (searchQuery != null) {
     return allSongs
         .where(
