@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:http/http.dart' as http;
 import 'package:musify/API/version.dart';
-import 'package:musify/services/external_storage.dart';
+import 'package:path_provider/path_provider.dart';
 
 late String dlUrl;
 const apiUrl =
@@ -28,15 +28,15 @@ Future<void> downloadAppUpdates() async {
   final dlUrl = await getCPUArchitecture() == 'aarch64'
       ? map['arm64url'].toString()
       : map['url'].toString();
-  final dlPath =
-      await ExternalStorageProvider().getExtStorage(dirName: 'Downloads');
-  final file = File('$dlPath/Musify.apk');
+  final dldir = await getApplicationSupportDirectory();
+  final dldirPath = dldir.path;
+  final file = File('$dldirPath/Musify.apk');
   if (await file.exists()) {
     await file.delete();
   }
   await FlutterDownloader.enqueue(
     url: dlUrl,
-    savedDir: dlPath!,
+    savedDir: dldirPath,
     fileName: 'Musify.apk',
     showNotification: true,
   );

@@ -21,9 +21,7 @@
   "downloadAppUpdate": "აპლიკაციის განახლების ჩამოტვირთვა",
   "downloadCompleted": "ჩამოტვირთვა დასრულდა",
   "downloadFailed": "Download failed",
-  "downloadSongsFolder": "ჩამოტვირთული სიმღერების საქაღალდე",
   "downloadStarted": "ჩამოტვირთვა დაიწყო",
-  "downloadedSongs": "ჩამოტვირთული სიმღერები",
   "errorWhileRequestingPerms": "Error while requesting permissions",
   "falseMSG": "მცდარი",
   "foregroundService": "წინა პლანის სერვისი",
@@ -63,7 +61,6 @@
   "useSystemColor": "გამოიყენე სისტემის ფერი (Android 12-ის ახალი ფუნქცია)",
   "userLikedSongs": "მომხმარებლის მოწონებული სიმღერები",
   "userPlaylists": "მომხმარებლის ფლეილისთები",
-  "yourDownloadedSongsHere": "შენი გადმოწერილი სიმღერები აქ",
   "yourFavoriteSongsHere": "შენი ფავორიტი სიმღერები აქ",
   "youtubePlaylistID": "Youtube ფლეილისთის ID"
 }

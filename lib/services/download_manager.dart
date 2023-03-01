@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:musify/API/musify.dart';
 import 'package:musify/screens/more_page.dart';
-import 'package:musify/services/external_storage.dart';
 import 'package:musify/utilities/flutter_toast.dart';
 import 'package:musify/widgets/download_button.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 Future<void> downloadSong(BuildContext context, dynamic song) async {
   try {
-    final downloadDirectory =
-        await ExternalStorageProvider().getExtStorage(dirName: 'Music');
+    final downloadDirectory = await getExternalStorageDirectory();
+    final downloadDirectoryPath = downloadDirectory?.path;
 
     final invalidCharacters = RegExp(r'[\\/*?:"<>|]');
 
@@ -29,7 +29,7 @@ Future<void> downloadSong(BuildContext context, dynamic song) async {
       context,
       filename,
       filepath,
-      downloadDirectory!,
+      downloadDirectoryPath!,
       song,
     );
   } catch (e) {

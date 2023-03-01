@@ -21,9 +21,7 @@
   "downloadAppUpdate": "Uygulama güncellemesini indirin",
   "downloadCompleted": "Download Completed",
   "downloadFailed": "Download failed",
-  "downloadSongsFolder": "Download Songs Folder",
   "downloadStarted": "Download Started",
-  "downloadedSongs": "İndirilen şarkılar",
   "errorWhileRequestingPerms": "Error while requesting permissions",
   "falseMSG": "Yanlış",
   "foregroundService": "Öncelikli Hizmet",
@@ -63,7 +61,6 @@
   "useSystemColor": "Sistem Rengini Kullan (Android 12 Yeni Özellik)",
   "userLikedSongs": "Kullanıcının beğendiği şarkılar",
   "userPlaylists": "Kullanıcı oynatma listeleri",
-  "yourDownloadedSongsHere": "İndirdiğiniz şarkılar burada",
   "yourFavoriteSongsHere": "En sevdiğin şarkılar burada",
   "youtubePlaylistID": "Youtube oynatma listesi ID"
 }
